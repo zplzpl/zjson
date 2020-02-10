@@ -15,15 +15,33 @@ example:
 
 ```go
 
-    encoder := NewJSONEncoder(NewProductionEncoderConfig())
-    
-    buf, err := encoder.Encode(
-        String("A", "test1"),
-        Time("B", time.Now()),
-        String("C", "test2"),
-        Int64("D", 100),
-        RawMessage("E", []byte(`{}`)),
-    )
+package main
+
+import (
+	"log"
+	"time"
+
+	"github.com/zplzpl/zjson"
+)
+
+func main() {
+	encoder := zjson.NewJSONEncoder(zjson.NewProductionEncoderConfig())
+
+	buf, err := encoder.Encode(
+		zjson.String("A", "test1"),
+		zjson.Time("B", time.Now()),
+		zjson.String("C", "test2"),
+		zjson.Int64("D", 100),
+		zjson.RawMessage("E", []byte(`{}`)),
+	)
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	log.Println(string(buf.Bytes()))
+}
+
 
 ```
 
