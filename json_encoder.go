@@ -345,8 +345,6 @@ func (enc *jsonEncoder) Encode(fields ...Field) (*buffer.Buffer, error) {
 
 	if final.LineEnding != "" {
 		final.buf.AppendString(final.LineEnding)
-	} else {
-		final.buf.AppendString(DefaultLineEnding)
 	}
 
 	ret := final.buf
